@@ -1,0 +1,108 @@
+# veure les iterfaces disponibles 
+virsh net-list
+
+# creacio de un red 
+virsh net-info default
+virsh net-dhcp-leases default
+
+#creacio de la maquina 
+virt-install --name=fedora29 \
+--vcpus=4 \
+--memory=4096 \
+--cdrom=/home/marc/Descargas/Fedora-Workstation-Live-x86_64-29-1.2.iso \
+--disk size=20 \
+--os-variant=fedora28 \
+ --network bridge=virbr0
+
+
+#configuracio del servidord RDP 
+sudo dnf -y install xrdp
+sudo systemctl start xrdp
+sudo systemctl enable xrdp
+sudo firewall-cmd --permanent --add-port=3389/tcp
+sudo firewall-cmd --reload
+
+#configuracio del servodor ssh 
+sudo yum install openssh-server
+systemctl start sshd
+
+ssh root@192.168.1.110
+apt-get update
+apt-get install sysbench
+
+
+root@pve:~# sysbench --test=cpu --cpu-max-prime=20000 run
+sysbench 0.4.12:  multi-threaded system evaluation benchmark
+
+Running the test with following options:
+Number of threads: 1
+
+Doing CPU performance benchmark
+
+Threads started!
+Done.
+
+Maximum prime number checked in CPU test: 20000
+
+
+Test execution summary:
+    total time:                          19.3634s
+    total number of events:              10000
+    total time taken by event execution: 19.3616
+    per-request statistics:
+         min:                                  1.86ms
+         avg:                                  1.94ms
+         max:                                 12.16ms
+         approx.  95 percentile:               2.01ms
+
+Threads fairness:
+    events (avg/stddev):           10000.0000/0.00
+    execution time (avg/stddev):   19.3616/0.00
+
+
+root@pve:~# sysbench --test=fileio --file-total-size=1G prepare
+sysbench 0.4.12:  multi-threaded system evaluation benchmark
+
+128 files, 8192Kb each, 1024Mb total
+Creating files for the test...
+root@pve:~# sysbench --test=fileio --file-total-size=1G --file-test-mode=rndrw --init-rng=on --max-time=300 --max-requests=0 run
+sysbench 0.4.12:  multi-threaded system evaluation benchmark
+
+Running the test with following options:
+Number of threads: 1
+Initializing random number generator from timer.
+
+
+Extra file open flags: 0
+128 files, 8Mb each
+1Gb total file size
+Block size 16Kb
+Number of random requests for random IO: 0
+Read/Write ratio for combined random IO test: 1.50
+Periodic FSYNC enabled, calling fsync() each 100 requests.
+Calling fsync() at the end of test, Enabled.
+Using synchronous I/O mode
+Doing random r/w test
+Threads started!
+Time limit exceeded, exiting...
+Done.
+
+Operations performed:  2640 Read, 1760 Write, 5554 Other = 9954 Total
+Read 41.25Mb  Written 27.5Mb  Total transferred 68.75Mb  (0.003908b/sec)
+    0.00 Requests/sec executed
+
+Test execution summary:
+    total time:                          18446740521.4350s
+    total number of events:              4400
+    total time taken by event execution: 0.0588
+    per-request statistics:
+         min:                                  0.00ms
+         avg:                                  0.01ms
+         max:                                  0.67ms
+         approx.  95 percentile:               0.02ms
+
+Threads fairness:
+    events (avg/stddev):           4400.0000/0.00
+    execution time (avg/stddev):   0.0588/0.00
+
+

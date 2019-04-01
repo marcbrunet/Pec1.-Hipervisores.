@@ -1,0 +1,105 @@
+\documentclass[preprint,11pt]{elsarticle}
+
+
+\usepackage{fullpage} % Package to use full page
+\usepackage{parskip} % Package to tweak paragraph skipping
+\usepackage{tikz} % Package for drawing
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage{multicol}
+%New colors defined below
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+\lstdefinestyle{mystyle}{
+  backgroundcolor=\color{backcolour},   commentstyle=\color{codegreen},
+  keywordstyle=\color{magenta},
+  numberstyle=\tiny\color{codegray},
+  stringstyle=\color{codepurple},
+  basicstyle=\footnotesize,
+  breakatwhitespace=false,         
+  breaklines=true,                 
+  captionpos=b,                    
+  keepspaces=true,                 
+  numbers=left,                    
+  numbersep=5pt,                  
+  showspaces=false,                
+  showstringspaces=false,
+  showtabs=false,                  
+  tabsize=2
+}
+%"mystyle" code listing set
+\lstset{style=mystyle}
+\journal{PEC1}
+\begin{document}
+\begin{frontmatter}
+
+    \title{Pec1. Hipervisores}
+    \author{Marc brunet presas}
+    \address{Manresa, Barcelona}
+    \begin{abstract}
+        Esta primera PEC trata sobre el despliegue de los diferentes hipervisores disponibles y pruebas de concenpto (no aptas para producción) de algunos de ellos.
+    \end{abstract}
+\end{frontmatter}
+
+\section{Instalar una MV sobre KVM de una distribución Linux (diferente a la del host -pueden ser de la misma familia- y en modo desktop) y acceder a ella en modo consola y en modo gráfico tanto desde el mismo host como desde una máquina remota (en los dos modos gráfico y texto). Permitir que esta máquina virtual vea las extensiones HW del procesador (virtualización anidada). \newline 
+Configurar KVM que trabaje la red en modo Bridged y probar la conexión remota a la MV en modo texto y gráfico (es suficiente con forwarding de X11 a través de ssh).}
+
+Definim i creem maquina virtual amb:
+\lstinputlisting[basicstyle=\tiny, language=bash, firstline=1, lastline=15]{commands.txt}\smallskip
+
+Fem servir Fedora 28 perquè Fedora 29 no existeix, Seguim un proses d'instal·lació normal de Fedora i esperem a què estigi disponible, ara tenim un sistema net, Fedora 29 per defecte porta el servidor RDP i SSH desinstal·lats i apagats, per tant els instal·lem i els arrenquem.
+\lstinputlisting[basicstyle=\tiny, language=bash, firstline=18, lastline=27]{commands.txt}\smallskip
+
+Ara ja podrem conectanse a la màquina per rdp o ssh
+
+\clearpage
+
+\section{Utilizar una virtual appliance que disponga de una interfaz gráfica (la que seprefiera de Turnkey o equivalente):}
+\subsection{Instalarla y configurarla sobre Virtualbox y mostrar la consola y la interfaz gráfica localmente.}
+
+descaragem el ova de la maquina virtual per importaro a virtualbox \footnote{https://www.turnkeylinux.org/drupal7} la obrirem amb virtualbox i la arancarem sequim el proses de confguracio per defecta i esparem a que la maquina arenqui una vegada configurada podrem acadair tant per web com per la pantalla de la maquina en virtualbox. drupla per defete prota el servidor ssh activat i el fpt amb la cotrasenya que em ceat podrem acadit per ssh 
+
+\subsection{Configurar Virtualbox para que se pueda acceder a la interfaz gráfica a través del protocolo VRPD (VirtualBOX Remote Desktop Protocol) y demostrar su funcionamiento desde unhost(+cliente) externo.}
+
+anem a la configuracio de maquina i activem la pantalla remota si no ficm autentificcacio ja tindem port per asadiri, aurem de intalanr el pack de extencio de vritualbox \footnote{version antiga a de ser la mateixa que tens de virtualbox https://www.virtualbox.org/wiki/Download\_Old\_Builds\_5\_2} per tal de poder acedir a la pantalla remota
+
+\section{}
+\subsection{Sobre una máquina desnuda -bare-metal- (se puede utilizar un dual boot sobre una partición de disco o en su defecto sobre una máquina virtual KVM con virtualización anidada del punto 1) instalar Promox.}
+
+no hi hauria de aver cap problema en la virutliasio per teni un dual boot el proses de dual bot funciona caragan un petit sistema com pot ser grub2 i ell es el que arenca el sistema per tan la "bios" de la mquina virutal veu un punt de arrancada ijual que si domes tigesism un sistema, el probelma podria venir a en dual boot win-linux en que alguns ipervios utilisan estrategia difarents per la virtualisascio.\smallskip
+
+nos descargaremos el prodmox iso para intalarla en una maquina virtual\footnote{https://www.proxmox.com/en/downloads} en este caso la \newline version 5.3, una vez descargado la instalarem, en el meu cas he fet servir virualbox per comoditat.
+
+una vegada instalt en conactem a https://192.168.1.110:8006/ i en logem amb root i la contrasenya definida en la intalacio. 
+
+\clearpage
+
+\subsection{nstalar sobre Promox una distribución Linux (la que se prefiera) ejecutando sobre este un test de rendimiento (p.ej. Sysbench).}
+
+per instalar i corre Sysbench entrerem per el modo text SSH per tal de instalar i configurar el sofware.
+\lstinputlisting[basicstyle=\tiny, language=bash, firstline=29, lastline=31]{commands.txt}\smallskip
+
+correm uns tetos de us de cpu 
+\lstinputlisting[basicstyle=\tiny, language=bash, firstline=34, lastline=60]{commands.txt}\smallskip
+
+\clearpage
+
+testos de disck\footnote{esta virtualisada sobre un disck ssd} corem domes 1G per temas de espai el diskc de la maquina es mes acurad coore amb 100G o similar.
+
+\lstinputlisting[basicstyle=\tiny, language=bash, firstline=63, lastline=106]{commands.txt}\smallskip
+
+\subsection{extraer conclusiones sobre los resultados del benchmark y realizar un breve análisis justificando sus valores.}
+en el testos que em corregut de CPU i Disck podem oberservar que per calcular numeros primes un total de 20.000 em fet la proba 10.000 vegedas per veura la estavilitat de la CPU i observem que la gran megoria de las vagades estem per sota de 2ms pro que alguna vegada arivem fins a 12 ms aixo es degut al planificador de la cpu i al us que sen fan de la mateixa.\newline
+en el testos fer per disc son tetos reduits per la falta de espai al disc pero anem a probar el disc de la mateixa forma que em probat la CPU, primer praparem 1Gb de fixers aleatoris\footnote{an de ser aleatoris tots o el cache del sistema/dico en falsagarant el resultat} apart auria de ser molt me gran que la maoria del systema i en aquet cast en a pugut falsager els resultats, una vegada tenim tots el fixers praparats vem una proba de lectura i escriptura i en fixem amb el valor de ks/s que obtenim.\smallskip
+
+podriem corre multiples test com de mySQL entre molts altres \footnote{https://wiki.gentoo.org/wiki/Sysbench}
+
+\section{Realizar un análisis (crítico) comparativo funcional (no de prestaciones) de las tres plataformas en cuanto a ventajas, desventajas, requerimientos y funcionalidad en base a la experiencias realizadas en los puntos anteriores y justificando en que se basa este análisis.}
+
+
+\end{document}
+
