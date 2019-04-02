@@ -100,6 +100,18 @@ podriem corre multiples test com de mySQL entre molts altres \footnote{https://w
 
 \section{Realizar un análisis (crítico) comparativo funcional (no de prestaciones) de las tres plataformas en cuanto a ventajas, desventajas, requerimientos y funcionalidad en base a la experiencias realizadas en los puntos anteriores y justificando en que se basa este análisis.}
 
+la virtualisacio es una gran eina ja que desacoplem el sistema prinsipal de tots els sistemas dels serveis i ens estaviem problemas de inconpatibilitats o actualisacions, tambe es proporciona un entorn mes estable que ja diposem de copies senseras que podem aprofitar a lora de actulisar un servei o avans de ferli modificacions, dequesta forma podriem tornar enredera de foram "rapida", molt mes rapida que resitalar una maquina sensera i mes lenta que reineciar un container, i sense perdre informacio tambe es perment gstionar millo els recursos de la infrastutura ja que anem signant a cada maquina els recursos que volem.\smallskip
 
+tambe podem gentianor estucturas de tipus cluster, es a dir multiplmes servidors amb sofwars de virtualisasiocio com proxmox vpsfere o altres i gestionar tota la infrastura en forma de serveis virulasisats, i el control de aquets amb copias i el moviment entre servidors per tal de nivellar la carga.\smallskip
+
+la evolucio de les tecnologias de la maquina es logina primer configurem el sistema de 0, tenim control total de com intalaem el sistema configuram i que hi fiquem a dintre pr tal tindriem un servei totalment personalisats, una vegada configurat podriem exportarlo i enviarlo a un gesto com el del punt 3.\smallskip
+
+mentre que la sego part el punt 2, en descaragem mauinas amb els serveis configurats o preconfigurats en les cuals el sistema i la configuracio general ja ve fet de forma que podem desplegar serveis de forma rapida. tambe els podem enviar en un sistema com el del punt 3 per tal de gestionar aquestas maquinas.\smallskip
+
+en els sistemas de virulisasio com poxmox gestionem diverrses intacias de maquinas virtuals es a dir podriem gestionar tots els serveis que podem fer en els puts 1,2 per tal de tenirlos organisars en un serviodor o varios.\smallskip
+
+les ventages de le virutlisasio amb kvm es que es una virtulasisacio a nivell del nucli de linux es a dir que te com a ventage utilisar un nucli intalat en una maquina fisica i no aver de virtualisar u hraware per tal de tornar a intalar un sistema dintre, per tan ens estalviemnt un pas en la virulaisacio. \smallskip
+
+en tecnologias mes actuals o mes de moda es fa una gestio amb doker suarm o kubernetes entr altres una gestio similar amb conteiners, en el mes utilisats tenim dokcer en el cual tenim una gestio molt similar de serveis que podem descaregar i arancar, tot i que la configuracio de un cotanidor es difarent a la de una VM tenim com a ventages que son molt mes lleugeres i amb tems de arancada practiment instantanins.\smallskip
 \end{document}
 
