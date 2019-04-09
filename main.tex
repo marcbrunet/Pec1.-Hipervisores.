@@ -1,6 +1,4 @@
 \documentclass[preprint,11pt]{elsarticle}
-
-
 \usepackage{fullpage} % Package to use full page
 \usepackage{parskip} % Package to tweak paragraph skipping
 \usepackage{tikz} % Package for drawing
@@ -38,10 +36,10 @@
 \begin{frontmatter}
 
     \title{Pec1. Hipervisores}
-    \author{Marc brunet presas}
+    \author{Marc Brunet Presas}
     \address{Manresa, Barcelona}
     \begin{abstract}
-        Esta primera PEC trata sobre el despliegue de los diferentes hipervisores disponibles y pruebas de concenpto (no aptas para producción) de algunos de ellos.
+        Esta primera PEC trata sobre el despliegue de los diferentes hiper visores disponibles y pruebas de concepto (no aptas para producción) de algunos de ellos.
     \end{abstract}
 \end{frontmatter}
 
@@ -51,30 +49,29 @@ Configurar KVM que trabaje la red en modo Bridged y probar la conexión remota a
 Definim i creem maquina virtual amb:
 \lstinputlisting[basicstyle=\tiny, language=bash, firstline=1, lastline=15]{commands.txt}\smallskip
 
-Fem servir Fedora 28 perquè Fedora 29 no existeix, Seguim un proses d'instal·lació normal de Fedora i esperem a què estigi disponible, ara tenim un sistema net, Fedora 29 per defecte porta el servidor RDP i SSH desinstal·lats i apagats, per tant els instal·lem i els arrenquem.
+Fem servir Fedora 28 perquè Fedora 29 no existeix, Seguim un procés d'instal·lació normal de Fedora i esperem que estigui disponible, ara tenim un sistema net,,, ara tenim un sistema net, Fedora 29 per defecte porta el servidor RDP i SSH desinstal·lats i apagats, per tant els instal·lem i els arrenquem.
 \lstinputlisting[basicstyle=\tiny, language=bash, firstline=18, lastline=27]{commands.txt}\smallskip
 
-Ara ja podrem conectanse a la màquina per rdp o ssh
+Ara ja podrem conectar-nos a la màquina per rdp o ssh
 
 \clearpage
 
 \section{Utilizar una virtual appliance que disponga de una interfaz gráfica (la que seprefiera de Turnkey o equivalente):}
-\subsection{Instalarla y configurarla sobre Virtualbox y mostrar la consola y la interfaz gráfica localmente.}
-
-descaragem el ova de la maquina virtual per importaro a virtualbox \footnote{https://www.turnkeylinux.org/drupal7} la obrirem amb virtualbox i la arancarem sequim el proses de confguracio per defecta i esparem a que la maquina arenqui una vegada configurada podrem acadair tant per web com per la pantalla de la maquina en virtualbox. drupla per defete prota el servidor ssh activat i el fpt amb la cotrasenya que em ceat podrem acadit per ssh 
+\subsection{Instalarla y configurarla sobre Virtualbox y mostrar la consola y la interfaz gráfica localmente}
+descaragem el ova de la maquina virtual per importar-ho a virtualbox \footnote{https://www.turnkeylinux.org/drupal7} L'obrirem amb virtualbox i l'arrancarem seguin el procés de configuració per defecte i esperem que la maquina arrenqui, una vegada configurada podrem accedir tant per web com per la pantalla de la màquina en virtualbox. doble per defecte porta el servidor ssh activat i el fpt amb la contrasenya que hem creat podrem accedir per ssh.
 
 \subsection{Configurar Virtualbox para que se pueda acceder a la interfaz gráfica a través del protocolo VRPD (VirtualBOX Remote Desktop Protocol) y demostrar su funcionamiento desde unhost(+cliente) externo.}
 
-anem a la configuracio de maquina i activem la pantalla remota si no ficm autentificcacio ja tindem port per asadiri, aurem de intalanr el pack de extencio de vritualbox \footnote{version antiga a de ser la mateixa que tens de virtualbox https://www.virtualbox.org/wiki/Download\_Old\_Builds\_5\_2} per tal de poder acedir a la pantalla remota
+Anem a la configuració de màquina i activem la pantalla remota si no posem autentificació, ja tindrem port per accedir, hauríem d'instal·lar el pack d'extensió de vritualbox \footnote{version antiga a de ser la mateixa que tens de virtualbox https://www.virtualbox.org/wiki/Download\_Old\_Builds\_5\_2} per tal de poder accedir a la pantalla remota
 
 \section{}
 \subsection{Sobre una máquina desnuda -bare-metal- (se puede utilizar un dual boot sobre una partición de disco o en su defecto sobre una máquina virtual KVM con virtualización anidada del punto 1) instalar Promox.}
 
-no hi hauria de aver cap problema en la virutliasio per teni un dual boot el proses de dual bot funciona caragan un petit sistema com pot ser grub2 i ell es el que arenca el sistema per tan la "bios" de la mquina virutal veu un punt de arrancada ijual que si domes tigesism un sistema, el probelma podria venir a en dual boot win-linux en que alguns ipervios utilisan estrategia difarents per la virtualisascio.\smallskip
+No hi hauria d'haver cap problema en la virtualització, per tenir un dual boot el procés de dual bot funciona caregen un petit sistema com pot ser grub2 i ell és el que arenca el sistema per tant, la "bios" de la màquina virtual veu un punt d'arrancada igual que si només tinguéssim un sistema, el problema podria venir per dual boot win-linux en què alguns ipervios utilitzen estratègies diferents per la virtualitsacio.\smallskip
 
-nos descargaremos el prodmox iso para intalarla en una maquina virtual\footnote{https://www.proxmox.com/en/downloads} en este caso la \newline version 5.3, una vez descargado la instalarem, en el meu cas he fet servir virualbox per comoditat.
+nos descargaremos el prodmox iso para instalarla en una maquina virtual\footnote{https://www.proxmox.com/en/downloads} en este caso la \newline version 5.3, una vez descargado la instalaremos, en mi caso he usado virualbox por comodidad.
 
-una vegada instalt en conactem a https://192.168.1.110:8006/ i en logem amb root i la contrasenya definida en la intalacio. 
+una vegada instalat en conectem a https://192.168.1.110:8006/ i en logem amb root i la contrasenya definida en la instalacio. 
 
 \clearpage
 
@@ -83,34 +80,34 @@ una vegada instalt en conactem a https://192.168.1.110:8006/ i en logem amb root
 per instalar i corre Sysbench entrerem per el modo text SSH per tal de instalar i configurar el sofware.
 \lstinputlisting[basicstyle=\tiny, language=bash, firstline=29, lastline=31]{commands.txt}\smallskip
 
-correm uns tetos de us de cpu 
+correm uns textos de us de cpu 
 \lstinputlisting[basicstyle=\tiny, language=bash, firstline=34, lastline=60]{commands.txt}\smallskip
 
 \clearpage
 
-testos de disck\footnote{esta virtualisada sobre un disck ssd} corem domes 1G per temas de espai el diskc de la maquina es mes acurad coore amb 100G o similar.
+testos de disck\footnote{esta virtualitsada sobre un disck ssd} corem domes 1G per temas de espai el diskc de la maquina es mes acurad coore amb 100G o similar.
 
 \lstinputlisting[basicstyle=\tiny, language=bash, firstline=63, lastline=106]{commands.txt}\smallskip
 
 \subsection{extraer conclusiones sobre los resultados del benchmark y realizar un breve análisis justificando sus valores.}
-en el testos que em corregut de CPU i Disck podem oberservar que per calcular numeros primes un total de 20.000 em fet la proba 10.000 vegedas per veura la estavilitat de la CPU i observem que la gran megoria de las vagades estem per sota de 2ms pro que alguna vegada arivem fins a 12 ms aixo es degut al planificador de la cpu i al us que sen fan de la mateixa.\newline
-en el testos fer per disc son tetos reduits per la falta de espai al disc pero anem a probar el disc de la mateixa forma que em probat la CPU, primer praparem 1Gb de fixers aleatoris\footnote{an de ser aleatoris tots o el cache del sistema/dico en falsagarant el resultat} apart auria de ser molt me gran que la maoria del systema i en aquet cast en a pugut falsager els resultats, una vegada tenim tots el fixers praparats vem una proba de lectura i escriptura i en fixem amb el valor de ks/s que obtenim.\smallskip
+En els textos que em corregut de CPU i Disck podem observar que per calcular números primes un total de 20.000 em fet la prova 10.000 vegades per veure l'estabilitat de la CPU i observem que la gran majoria de les vegades estem per sota de 2ms però que alguna vegada arribem fins a 12 ms, això és a causa del planificador de la cpu i l'ús que es fa de la mateixa.\newline
+en el textes fets per disc son textes reduits per la falta de espai al disc, pero anem a probar el disc de la mateixa forma que em probat la CPU, primer preparem 1Gb de fixers aleatoris\footnote{an de ser aleatoris tots o el cache del sistema/dico en falsegerant el resultat} apart hauria de ser molt mes gran que la majoria del systema i en aquest cas ens ha pogut falsegar els resultats, una vegada tenim tots el fixers preparats fem una proba de lectura i escriptura i en fixem amb el valor de ks/s que obtenim.\smallskip
 
 podriem corre multiples test com de mySQL entre molts altres \footnote{https://wiki.gentoo.org/wiki/Sysbench}
 
 \section{Realizar un análisis (crítico) comparativo funcional (no de prestaciones) de las tres plataformas en cuanto a ventajas, desventajas, requerimientos y funcionalidad en base a la experiencias realizadas en los puntos anteriores y justificando en que se basa este análisis.}
 
-la virtualisacio es una gran eina ja que desacoplem el sistema prinsipal de tots els sistemas dels serveis i ens estaviem problemas de inconpatibilitats o actualisacions, tambe es proporciona un entorn mes estable que ja diposem de copies senseras que podem aprofitar a lora de actulisar un servei o avans de ferli modificacions, dequesta forma podriem tornar enredera de foram "rapida", molt mes rapida que resitalar una maquina sensera i mes lenta que reineciar un container, i sense perdre informacio tambe es perment gstionar millo els recursos de la infrastutura ja que anem signant a cada maquina els recursos que volem.\smallskip
+La virtualització és una gran eina, ja que desacoblem el sistema principal de tots els sistemes dels serveis i ens estalviem problemes d'incompatibilitats o actualitzacions, també es proporciona un entorn més estable que ja disposem de còpies senceres que podem aprofitar a l'hora d'actualitzar un servei o abans de fer-li modificacions, d'aquesta forma podríem tornar enredera de forma "rapida", molt més rapida que reinstal·lar una màquina sencera i més lenta que reiniciar un container, i sense perdre informació també ens permet gestionar millor els recursos de l'infraestructura, ja que anem signant a cada màquina els recursos que volem.\smallskip
 
-tambe podem gentianor estucturas de tipus cluster, es a dir multiplmes servidors amb sofwars de virtualisasiocio com proxmox vpsfere o altres i gestionar tota la infrastura en forma de serveis virulasisats, i el control de aquets amb copias i el moviment entre servidors per tal de nivellar la carga.\smallskip
+També podem gestionar estructures de tipus cluster, és a dir múltiples servidors amb sofwars de virtualització com proxmox vpsfere o altres i gestionar tota la infraestructura en forma de serveis virtualitsats, i el control d'aquests amb còpies i el moviment entre servidors per tal d'anivellar la càrrega.\smallskip
 
-la evolucio de les tecnologias de la maquina es logina primer configurem el sistema de 0, tenim control total de com intalaem el sistema configuram i que hi fiquem a dintre pr tal tindriem un servei totalment personalisats, una vegada configurat podriem exportarlo i enviarlo a un gesto com el del punt 3.\smallskip
+l'evolucio de les tecnologies de la màquina és logina primer configurem el sistema de 0, tenim control total de com instal·lem el sistema configurem, que hi fiquem a dins per tal tindríem un servei totalment personalitzat, una vegada configurat podríem exportar-lo i enviar-lo a un gesto com el del punt 3.\smallskip
 
-mentre que la sego part el punt 2, en descaragem mauinas amb els serveis configurats o preconfigurats en les cuals el sistema i la configuracio general ja ve fet de forma que podem desplegar serveis de forma rapida. tambe els podem enviar en un sistema com el del punt 3 per tal de gestionar aquestas maquinas.\smallskip
+Mentre que la segona part el punt 2, en descaregem màquines amb els serveis configurats o preconfigurats en les quals el sistema i la configuració general ja ve fet de forma que podem desplegar serveis de forma rapida. També els podem enviar en un sistema com el del punt 3 per tal de gestionar aquestes màquines.\smallskip
 
-en els sistemas de virulisasio com poxmox gestionem diverrses intacias de maquinas virtuals es a dir podriem gestionar tots els serveis que podem fer en els puts 1,2 per tal de tenirlos organisars en un serviodor o varios.\smallskip
+En els sistemes de visualització com poxmox gestionem diverses instàncies de màquines virtuals, és a dir, podríem gestionar tots els serveis que podem fer els puts 1,2 per tal de tenir-los organitzats en un servidor o varis.\smallskip
 
-les ventages de le virutlisasio amb kvm es que es una virtulasisacio a nivell del nucli de linux es a dir que te com a ventage utilisar un nucli intalat en una maquina fisica i no aver de virtualisar u hraware per tal de tornar a intalar un sistema dintre, per tan ens estalviemnt un pas en la virulaisacio. \smallskip
+els avantatges de la virutlizassio amb kvm és que és una virtualització a escala del nucli de linux, és a dir,que té com a avantatja utilitzar un nucli instal·lat en una màquina física i no haver de visualitzar u hraware per tal de tornar a instal·lar un sistema dintre, per tant ens estalviem un pas en la visualització. \smallskip
 
 en tecnologias mes actuals o mes de moda es fa una gestio amb doker suarm o kubernetes entr altres una gestio similar amb conteiners, en el mes utilisats tenim dokcer en el cual tenim una gestio molt similar de serveis que podem descaregar i arancar, tot i que la configuracio de un cotanidor es difarent a la de una VM tenim com a ventages que son molt mes lleugeres i amb tems de arancada practiment instantanins.\smallskip
 \end{document}
